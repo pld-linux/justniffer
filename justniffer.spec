@@ -42,14 +42,28 @@ Main differences from other sniffers:
 
 %prep
 %setup -q
+
 cp -p %{SOURCE1} m4
 
 %build
+cd lib/libnids-1.21_patched
+%{__aclocal}
+%{__autoconf}
+%{__libtoolize}
+%configure \
+	--disable-libnet \
+	--disable-libglib \
+	--disable-option-checking \
+	--srcdir=.
+%{__make} -C src
+cd -
+
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
 %{__automake}
-%configure
+# subconfigure does not like our params, so use plain configure
+./configure
 %{__make}
 
 %install
