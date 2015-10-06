@@ -42,8 +42,7 @@ Main differences from other sniffers:
 
 %prep
 %setup -q
-
-cp -p %{SOURCE1} m4
+cp -p %{SOURCE1} acinclude.m4
 
 %build
 cd lib/libnids-1.21_patched
