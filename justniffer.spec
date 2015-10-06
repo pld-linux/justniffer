@@ -42,13 +42,12 @@ Main differences from other sniffers:
 
 %prep
 %setup -q
-
-install %{SOURCE1} acinclude.m4
+cp -p %{SOURCE1} m4
 
 %build
+%{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
-%{__autoheader}
 %{__automake}
 %configure
 %{__make}
