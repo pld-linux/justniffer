@@ -63,7 +63,8 @@ cd -
 %{__autoconf}
 %{__automake}
 # subconfigure does not like our params, so use plain configure
-./configure
+./configure \
+	--prefix=%{_prefix}
 %{__make}
 
 %install
@@ -78,8 +79,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog COPYING README
 %attr(755,root,root) %{_bindir}/justniffer
+%{_mandir}/man8/justniffer.8*
+%if 0
 %attr(755,root,root) %{_bindir}/justniffer-grab-http-traffic
 %dir %{_datadir}/justniffer
 %dir %{_datadir}/justniffer/scripts
 %attr(755,root,root) %{_datadir}/justniffer/scripts/*
-%{_mandir}/man8/justniffer.8*
+%endif
