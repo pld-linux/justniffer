@@ -4,6 +4,8 @@ Version:	0.5.12
 Release:	0.1
 Source0:	http://downloads.sourceforge.net/justniffer/%{name}_%{version}.tar.gz
 # Source0-md5:	4321e69e77f21b335c9f1da228b70450
+Source1:	http://github.com/tsuna/boost.m4/raw/master/build-aux/boost.m4
+# Source1-md5:	ea467ff0c8d8f740e8feadc7e7a3c6fb
 License:	GPL v3
 Group:		Networking/Utilities
 URL:		http://justniffer.sourceforge.net/
@@ -40,6 +42,8 @@ Main differences from other sniffers:
 
 %prep
 %setup -q
+
+install %{SOURCE1} acinclude.m4
 
 %build
 %{__aclocal} -I m4
